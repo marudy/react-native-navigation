@@ -248,7 +248,7 @@ android {
         applicationId "com.yourproject"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
++        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57" // See note below!
         versionCode 1
         versionName "1.0"
         ...
@@ -257,13 +257,18 @@ android {
 }
 ```
 
-RNN only support react-native 0.51 (`"reactNative51"`), 0.55 (`"reactNative55"`), and 0.56 (`"reactNative56"`),
+!>Important note about `missingDimensionStrategy`<Br>
+>`reactNative51` - RN 0.54.x and below<Br>
+>`reactNative55` - RN 0.55.x<Br>
+>`reactNative56` - RN 0.56.x<Br>
+>`reactNative57` - RN 0.57.0 - 0.57.4<Br>
+>`reactNative57_5` - RN 0.57.5 and above<Br>
 
 Now we need to instruct gradle how to build that flavor. To do so here two solutions:
 
 #### 7.1 Build app with gradle command 
 
-**prefered solution** The RNN flavor you would like to build is specified in `app/build.gradle`. Therefore in order to compile only that flavor, instead of building your entire project using `./gradlew assembleDebug`, you should instruct gradle to build the app module: `./gradlew app:asembleDebug`. The easiest way is to add a package.json command to build and install your debug Android APK .
+**prefered solution** The RNN flavor you would like to build is specified in `app/build.gradle`. Therefore in order to compile only that flavor, instead of building your entire project using `./gradlew assembleDebug`, you should instruct gradle to build the app module: `./gradlew app:assembleDebug`. The easiest way is to add a package.json command to build and install your debug Android APK .
 
 ```
 "scripts": {
@@ -360,4 +365,4 @@ import App from "./App";
 +});
 ```
 
-⚠️ we use the layout type `component` here, which renders a React component but does not allow you to navigate to others. See [Usage](./Usage.md) and [LayoutTypes](./layout-types.md) for more options.
+⚠️ we use the layout type `component` here, which renders a React component but does not allow you to navigate to others. See [Usage](docs/Usage.md) and [LayoutTypes](docs/layout-types.md) for more options.
